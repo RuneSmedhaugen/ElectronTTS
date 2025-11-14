@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Super Good TTS App</title>
+    <link rel="stylesheet" href="./output.css" />
+  </head>
+
+  <body class="min-h-screen bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] text-gray-200 flex items-center justify-center font-sans select-none">
+    <div class="relative w-full max-w-xl bg-[#1e293b]/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-slate-700 p-8">
+      <!-- Neon border glow -->
+      <div class="absolute inset-0 rounded-3xl border border-blue-500/30 blur-lg pointer-events-none"></div>
+
+      <h1 class="text-3xl font-bold text-center mb-6 tracking-tight">
+        🎙️ <span class="text-blue-400">Super Good</span> Text-to-Speech
+      </h1>
+
+      <textarea
+        id="input"
+        rows="8"
+        class="w-full resize-none bg-slate-900/70 border border-slate-700 rounded-lg p-4 text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-gray-500 shadow-inner"
+        placeholder="Enter your magnificent words here..."
+      ></textarea>
+
+      <button
+        id="speak"
+        onclick="btnSpeak()"
+        class="mt-5 w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 active:scale-[0.98] text-white font-semibold py-3 rounded-xl shadow-lg transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        Speak
+      </button>
+
+      <p id="status" class="text-center mt-4 text-sm text-slate-400 italic"></p>
+    </div>
+
+    <script>
+      async function btnSpeak() {
+        const btn = document.getElementById("speak");
+        const inputElement = document.getElementById("input");
+        const status = document.getElementById("status");
+        const text = inputElement.value.trim();
+
+        if (!text) {
+          status.textContent = "Please enter some text first!";
+          status.classList.add("text-red-400");
+          return;
+        }
+
+        btn.disabled = true;
+        btn.textContent = "Speaking...";
+        status.textContent = "✨ Speaking...";
+        status.classList.remove("text-red-400");
+        status.classList.add("text-blue-400");
+
+        try {
+          await window.tts.speak(text);
+          status.textContent = "✅ Done speaking!";
+          status.classList.replace("text-blue-400", "text-green-400");
+        } catch (error) {
+          console.error("TTS error:", error);
+          status.textContent = "❌ Something went wrong!";
+          status.classList.replace("text-blue-400", "text-red-400");
+        } finally {
+          btn.disabled = false;
+          btn.textContent = "Speak";
+          setTimeout(() => (status.textContent = ""), 2500);
+        }
+      }
+    </script>
+  </body>
+</html>
