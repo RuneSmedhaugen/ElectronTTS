@@ -1,25 +1,45 @@
 {
   "name": "electrontts",
   "version": "1.0.0",
-  "description": "",
+  "description": "A small TTS app, have fun :)",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
+    "build": "electron-builder",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Rune S",
   "license": "ISC",
   "type": "commonjs",
+  "build": {
+    "appId": "com.runeTTS.electrontts",
+    "productName": "RuneTTS",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*"
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "mac": {
+      "target": "dmg"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  },
   "devDependencies": {
     "@tailwindcss/cli": "^4.1.17",
     "autoprefixer": "^10.4.22",
     "electron": "^39.1.1",
+    "electron-builder": "^26.0.12",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.17"
   },
   "dependencies": {
-    "say": "^0.16.0",
-    "say.js": "^1.4.0"
+    "say": "^0.16.0"
   }
 }

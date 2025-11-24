@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Super Good TTS App</title>
+    <title>Rune's not buggy at all TTS</title>
     <link rel="stylesheet" href="./output.css" />
   </head>
 
@@ -11,9 +11,18 @@
       <!-- Neon border glow -->
       <div class="absolute inset-0 rounded-3xl border border-blue-500/30 blur-lg pointer-events-none"></div>
 
-      <h1 class="text-3xl font-bold text-center mb-6 tracking-tight">
-        🎙️ <span class="text-blue-400">Super Good</span> Text-to-Speech
-      </h1>
+<h1 class="text-3xl font-bold text-center mb-6 tracking-tight dramatic-title">
+  🎙️ 
+  <span class="text-blue-400">Super Good</span>
+  <span class="text-blue-400">Text-to-Speech</span>
+  <span class="text-blue-400">that definitely has</span>
+  <b><u class="text-red-500">ABSOLUTELY ZERO</u></b>
+  <span class="text-blue-400">bugs whatsoever 🎉</span>
+</h1>
+
+
+
+
 
       <textarea
         id="input"
@@ -34,6 +43,18 @@
     </div>
 
     <script>
+
+        const title = document.querySelector('.dramatic-title');
+
+  setInterval(() => {
+    // reset animation
+    title.style.animation = 'none';
+    // force reflow
+    void title.offsetWidth;
+    // re-apply animation
+    title.style.animation = 'dramaticEntrance 1.5s ease-out forwards';
+  }, 20000); // 20s
+
       async function btnSpeak() {
         const btn = document.getElementById("speak");
         const inputElement = document.getElementById("input");
